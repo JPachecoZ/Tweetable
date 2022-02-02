@@ -1,0 +1,40 @@
+.table-container {
+  padding: 16px 4px;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  text-indent: 0;
+  border-radius: 4px;
+  box-shadow: var(--shadow-base);
+}
+
+table a {
+  font-weight: 600;
+}
+
+table thead {
+  background-color: var(--gray-100);
+  color: var(--secondary-300);
+}
+
+tr + tr > td {
+  border-top: 1px solid var(--gray-200);
+}
+
+table th {
+  padding: 12px 24px;
+  text-align: left;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+table td {
+  padding: 16px 24px;
+  font-size: 14px;
+  line-height: 20px;
+}
