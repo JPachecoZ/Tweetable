@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 2022_02_02_205228) do
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.text "body"
-    t.integer "replies_count"
-    t.integer "likes_count"
+    t.text "body", null: false
+    t.integer "replies_count", default: 0
+    t.integer "likes_count", default: 0
     t.bigint "user_id", null: false
     t.bigint "replied_to_id"
     t.datetime "created_at", precision: 6, null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_205228) do
     t.datetime "remember_created_at", precision: 6
     t.string "username"
     t.string "name"
-    t.integer "role"
+    t.integer "role", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
