@@ -10,14 +10,14 @@
         <p><%= time_ago_in_words(tweet.created_at)%></p>
       </div>
     </div>
-    <p>          
+    <p>
       <%= tweet.body %>
     </p>
     <div class="tweet-footer">
       <p>
         <i class="far fa-comment-dots"></i>
         <%= tweet.replies_count %>
-      </p>    
+      </p>
       <p>
         <i class="far fa-heart"></i>
         <%= tweet.likes_count %>
