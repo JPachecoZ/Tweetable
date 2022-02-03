@@ -4,16 +4,14 @@
   <div id="tweets">
     <div class="new-tweet">
       <%= form_with model: @tweet, html: {class: 'tweet-form'} do |f| %>
-      <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;' %>
-      <p class="flex-end"><%= f.submit "TWEET", class: "button button--sm" %></p>        
-      <% end %> 
+        <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;' %>
+        <p class="flex-end"><%= f.submit "TWEET", class: "button button--sm" %></p>
+      <% end %>
     </div>
     <% @tweets.each do |tweet| %>
       <% unless tweet.replied_to_id %>
         <%= render tweet %>
       <% end %>
     <% end %>
-  </div>
-  
-  <%= link_to "New tweet", new_tweet_path %>
+  </div>  
 </section>
