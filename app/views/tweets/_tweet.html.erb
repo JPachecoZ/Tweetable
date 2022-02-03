@@ -7,21 +7,33 @@
           <p><%= tweet.user.name %></p>
           <p class = "tweet-username">@<%= tweet.user.username%></p>
         </div>
-        <p><%= time_ago_in_words(tweet.created_at)%></p>
+        <% if tweet.created_at != tweet.updated_at %>      
+          <p><%= time_ago_in_words(tweet.created_at)%> (Edited)</p>
+        <% else %>
+          <p><%= time_ago_in_words(tweet.created_at)%></p>
+        <% end %>
       </div>
     </div>
     <p>          
       <%= tweet.body %>
     </p>
-    <div class="tweet-footer">
-      <p>
-        <i class="far fa-comment-dots"></i>
-        <%= tweet.replies_count %>
-      </p>    
-      <p>
-        <i class="far fa-heart"></i>
-        <%= tweet.likes_count %>
-      </p>
+    <div class="tweet-footer-container">
+      <div class="tweet-icons">
+        <i class="far fa-trash-alt pointer"></i>          
+          <%= link_to edit_tweet_path(tweet) do %>
+            <i class="fas fa-pencil-alt pointer"></i>
+          <%end%>
+      </div>
+      <div class="tweet-footer">
+        <p>
+          <i class="far fa-comment-dots"></i>
+          <%= tweet.replies_count %>
+        </p>    
+        <p>
+          <i class="far fa-heart"></i>
+          <%= tweet.likes_count %>
+        </p>
+      </div>
     </div>
   </div>
 </div>

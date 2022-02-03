@@ -1,10 +1,50 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @tweet %>
-
-<div>
-  <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %> |
-  <%= link_to "Back to tweets", tweets_path %>
-
-  <%= button_to "Destroy this tweet", @tweet, method: :delete %>
-</div>
+<section class="section flex flex-column gap-4">
+  <%= render @tweet %>
+  <div class="gray-line"></div>
+  <div class="new-tweet">
+    <%= form_with model: @new_tweet, html: {class: 'tweet-form'} do |f| %>
+      <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;' %>
+      <p class="flex-end"><%= f.submit "TWEET", class: "button button--sm" %></p>        
+     <% end %> 
+  </div>
+  <div class="replies-container">
+    <% @replies.each do |reply| %>
+    <div class="tweet">
+      <div class="flex">
+        <%= image_tag reply.user.avatar, class: "tweet-img" if reply.user.avatar.attached?%>
+        <div class="flex flex-column">
+          <div class="flex">
+            <p><%= reply.user.name %></p>
+            <p class = "tweet-username">@<%= reply.user.username%></p>
+          </div>
+          <p><%= time_ago_in_words(reply.updated_at)%></p>
+        </div>
+      </div>
+      <p>          
+        <%= reply.body %>
+      </p>
+      <div class="tweet-footer-container">
+        <div class="tweet-icons">         
+            <i class="far fa-trash-alt pointer"></i>          
+          <%= link_to edit_tweet_path(reply) do %>
+            <i class="fas fa-pencil-alt pointer"></i>
+          <%end%>
+        </div>
+        <div class="tweet-footer">
+          <p>
+              <i class="far fa-comment-dots"></i>
+            <%= reply.replies_count %>
+          </p>    
+          <p>
+            <i class="far fa-heart"></i>
+            <%= reply.likes_count %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <%end%>
+  </div>
+  <div>
+    <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %>  
+  </div>
+</sec>
