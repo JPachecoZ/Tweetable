@@ -1,43 +1,26 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 class="heading text-center mb-4">Edit Profile</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-column gap-4", data: { turbo: "false" } }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  
+  <%= input_text(f, :username, resource, placeholder: "example") %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= input_email(f, :email, resource, placeholder: "example@mail.com", autofocus: true) %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <%= input_text(f, :name, resource, placeholder: "Example Name") %>
+
+  <% if @user.avatar.attached?%>
+    <%= image_tag @user.avatar %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+  <%= input_file(f, :avatar, resource)%>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <%= input_password(f, :password, resource, placeholder: "******") %>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+  <%= input_password(f, :password_confirmation, resource, placeholder: "******") %>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+  <%= input_password(f, :current_password, resource, autocomplete: "current_password", placeholder: "******") %>
+
+  <%= f.submit "Update", class: "button button--primary full-width mb-4" %>
+  
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class: "text-center full-width" %>
