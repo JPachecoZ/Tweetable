@@ -18,7 +18,12 @@
       <div class="container navbar">
         <%=link_to image_tag("Logo.png"), root_path, class: "logo"%>
         <nav>
-          <ul class="navbar-links" role="list">
+
+          <div class="js-navbar-menu">
+            <%=image_tag "icons/menu.svg", class: "navbar__menu-icon"%>
+            <%=image_tag "icons/close.svg", class: "navbar__menu-icon-close"%>
+          </div>
+          <ul class="navbar-links gap-4" role="list">
             <%if user_signed_in?%>
               <li>Welcome <%=current_user.username%></li>
               <li><%=link_to "Profile", edit_user_registration_path%></li>
@@ -31,10 +36,7 @@
             <%end%>
           </ul>
         </nav>
-        <div class="js-navbar-menu">
-          <%=image_tag "icons/menu.svg", class: "navbar__menu-icon"%>
-          <%=image_tag "icons/close.svg", class: "navbar__menu-icon-close"%>
-        </div>
+
       </div>
     </header>
 
