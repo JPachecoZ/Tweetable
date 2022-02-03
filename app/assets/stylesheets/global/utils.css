@@ -101,3 +101,14 @@
 .p-0 {
   padding: 0;
 }
+
+.pointer {
+  cursor: pointer;
+  line-height: 0;
+}
+
+.gray-line {
+  max-width: 100%;    
+  background-color: var(--secondary-100);
+  height: 4px;
+}

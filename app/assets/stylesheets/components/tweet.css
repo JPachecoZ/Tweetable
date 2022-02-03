@@ -34,16 +34,30 @@
 }
 
 .tweet-footer {
-    display: flex;
-    justify-content: end;
+    display: flex;    
     margin: 0.5rem 0.25rem;
     gap: 0.750rem;
+}
+
+.tweet-footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tweet-icons {
+    display: flex;
+    gap: 0.75rem;
+    color: var(--gray-300);
+    align-items: center;
 }
 
 .new-tweet {
     display: flex;
     justify-content: center;
-    padding-top: 1rem;
+    padding: 1rem;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.377);
+    border-radius: 4px;    
 }    
 
 .tweet-username {
@@ -52,4 +66,11 @@
 
 .liked {
     color: var(--primary-300)
+}
+.tweet-text-area {    
+    border: none;
+}
+
+.tweet-form {
+    width: 100%;
 }

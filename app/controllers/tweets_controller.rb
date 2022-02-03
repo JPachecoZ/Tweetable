@@ -2,23 +2,15 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
 
   # GET /tweets
-  def index
-    puts "****************************************"
-    p params
-    puts "***************************************"
-    p current_user
+  def index    
     @tweet = Tweet.new
-    @tweets = Tweet.all
-
-    p @tweets[0]
-    @liked_tweets = Tweet.where('user_id' == current_user.id)
-    
-    
+    @tweets = Tweet.all    
   end
 
   # GET /tweets/1
-  def show
-    
+  def show    
+    @new_tweet = Tweet.new    
+    @replies = @tweet.replies.all
   end
 
   # GET /tweets/new
