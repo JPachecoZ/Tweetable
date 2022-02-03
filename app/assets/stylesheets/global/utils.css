@@ -78,6 +78,10 @@
   align-items: center;
 }
 
+.content-center {
+  justify-content: center;
+}
+
 /* Width */
 .fit-content {
   width: fit-content;
@@ -88,6 +92,10 @@
   text-align: left;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .text-center {
   text-align: center;
 }
@@ -95,4 +103,9 @@
 /* Paddings */
 .p-0 {
   padding: 0;
+}
+
+/* Typography */
+.bold {
+  font-weight: bold;
 }
