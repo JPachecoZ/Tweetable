@@ -48,6 +48,15 @@ class TweetsController < ApplicationController
     redirect_to tweets_url, notice: "Tweet was successfully destroyed."
   end
 
+  def like_tweet
+    redirect_to request.referrer, notice: "Liked Tweet"
+
+  end
+
+  def unlike_tweet
+    redirect_to request.referrer, notice: "Unliked Tweet"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet

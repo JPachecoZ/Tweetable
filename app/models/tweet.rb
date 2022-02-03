@@ -17,9 +17,6 @@ class Tweet < ApplicationRecord
   belongs_to :replied_to, class_name: "Tweet", optional: true, counter_cache: :replies_count
 
   def liked_users 
-    us= Like.where(tweet_id: id).pluck(:user_id)
-    p "USERS"
-p us
-    return us
+    return Like.where(tweet_id: id).pluck(:user_id)
   end
 end
