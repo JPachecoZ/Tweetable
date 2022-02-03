@@ -19,8 +19,8 @@
         <%= tweet.replies_count %>
       </p>    
       <p>
-        <i class="far fa-heart"></i>
-        <%= tweet.likes_count %>
+        <i class="<%= class_names(liked: (tweet.liked_users.include? 1), far: true, "fa-heart": true) %>"></i>
+        <%= tweet.liked_users.length %>
       </p>
     </div>
   </div>

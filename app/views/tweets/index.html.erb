@@ -12,6 +12,10 @@
     <% @tweets.each do |tweet| %>
       <%= render tweet %>      
     <% end %>
+    <h2>Liked Tweets</h2>
+    <% @liked_tweets.each do |tweet| %>
+      <%= render tweet %>      
+    <% end %>
   </div>
   
   <%= link_to "New tweet", new_tweet_path %>

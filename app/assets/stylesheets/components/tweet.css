@@ -49,3 +49,7 @@
 .tweet-username {
     color: var(--primary-300);
 }
+
+.liked {
+    color: var(--primary-300)
+}

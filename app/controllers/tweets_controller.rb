@@ -4,11 +4,14 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index
     puts "****************************************"
-    pp params
+    p params
     puts "***************************************"
     p current_user
     @tweet = Tweet.new
     @tweets = Tweet.all
+
+    p @tweets[0]
+    @liked_tweets = Tweet.where('user_id' == current_user.id)
     
     
   end
