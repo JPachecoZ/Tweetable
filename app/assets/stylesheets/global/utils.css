@@ -66,6 +66,11 @@
   flex-direction: column;
 }
 
+.flex-end {
+  display: flex;
+  justify-content: flex-end;  
+}
+
 .wrap {
   flex-wrap: wrap;
 }

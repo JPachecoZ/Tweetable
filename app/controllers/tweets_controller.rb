@@ -3,11 +3,19 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
+    puts "****************************************"
+    pp params
+    puts "***************************************"
+    p current_user
+    @tweet = Tweet.new
     @tweets = Tweet.all
+    
+    
   end
 
   # GET /tweets/1
   def show
+    
   end
 
   # GET /tweets/new
