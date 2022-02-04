@@ -48,8 +48,11 @@
 .tweet-icons {
     display: flex;
     gap: 0.75rem;
-    color: var(--gray-300);
     align-items: center;
+}
+
+.tweet-icon {
+    color: var(--gray-300);
 }
 
 .new-tweet {

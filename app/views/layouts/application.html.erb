@@ -12,7 +12,6 @@
   </head>
 
   <body>
-    <p style="color: rgb(13, 185, 13);" class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     
     <header class="header">
@@ -42,6 +41,7 @@
     </header>
 
     <main class="section">
+      <p style="color: rgb(13, 185, 13); text-align:center" class="notice"><%= notice %></p>
       <div class="container">
         <%= yield %>
       </div>
