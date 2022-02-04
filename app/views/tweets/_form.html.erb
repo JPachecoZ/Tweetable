@@ -10,13 +10,10 @@
       </ul>
     </div>
   <% end %>
-  
-
-  <div>
-    <% form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-  <div>
-    <%= form.submit value: "Update", class: "button button--sm" %>
+  <div class="new-tweet">
+    <div class="tweet-form-edit">      
+        <%= form.text_area :body, class: "tweet-text-area", rows: 5, style: 'width:100%;' %>     
+        <p class="flex-end"><%= form.submit value: "Update", class: "button button--sm" %></p>   
+    </div>
   </div>
 <% end %>

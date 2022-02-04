@@ -24,7 +24,8 @@ class TweetsController < ApplicationController
 
   # POST /tweets
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweet.new(tweet_params)    
+    @tweet.user = current_user
 
     if @tweet.save
       redirect_to @tweet, notice: "Tweet was successfully created."
@@ -34,7 +35,7 @@ class TweetsController < ApplicationController
   end
 
   # PATCH/PUT /tweets/1
-  def update
+  def update    
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: "Tweet was successfully updated."
     else

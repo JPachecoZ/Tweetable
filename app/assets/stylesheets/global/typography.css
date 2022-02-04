@@ -16,7 +16,8 @@ body {
 }
 
 .heading,
-.heading--md {
+.heading--md,
+.prose h1 {
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 600;
@@ -38,12 +39,14 @@ body {
   line-height: 2.5rem;
 }
 
-.heading--sm {
+.heading--sm,
+.prose h2 {
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
-.heading--xs {
+.heading--xs,
+.prose h3 {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }

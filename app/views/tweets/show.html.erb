@@ -1,3 +1,4 @@
+<h1 class="tweets-title">Tweet Detail</h1>
 <section class="section flex flex-column gap-4">
   <%= render @tweet %>
   <div class="gray-line"></div>
@@ -9,42 +10,42 @@
   </div>
   <div class="replies-container">
     <% @replies.each do |reply| %>
-    <div class="tweet">
-      <div class="flex">
-        <%= image_tag reply.user.avatar, class: "tweet-img" if reply.user.avatar.attached?%>
-        <div class="flex flex-column">
-          <div class="flex">
-            <p><%= reply.user.name %></p>
-            <p class = "tweet-username">@<%= reply.user.username%></p>
+      <div class="tweet">
+        <div class="flex">
+          <%= image_tag reply.user.avatar, class: "tweet-img" if reply.user.avatar.attached?%>
+          <div class="flex flex-column">
+            <div class="flex gap-1">
+              <p><%= reply.user.name %></p>
+              <p class = "tweet-username">@<%= reply.user.username%></p>
+            </div>
+            <p><%= time_ago_in_words(reply.updated_at)%></p>
           </div>
-          <p><%= time_ago_in_words(reply.updated_at)%></p>
+        </div>
+        <p>          
+          <%= reply.body %>
+        </p>
+        <div class="tweet-footer-container">
+          <div class="tweet-icons">         
+            <%=link_to tweet_path(reply), data: { turbo_method: :delete, 
+                                          turbo_confirm: "Seguro?" } do %>
+              <i class="far fa-trash-alt pointer"></i> 
+            <% end %>
+            <%= link_to edit_tweet_path(reply) do %>
+              <i class="fas fa-pencil-alt pointer"></i>
+            <%end%>
+          </div>
+          <div class="tweet-footer">
+            <p>
+                <i class="far fa-comment-dots"></i>
+              <%= reply.replies_count %>
+            </p>    
+            <p>
+              <i class="far fa-heart"></i>
+              <%= reply.likes_count %>
+            </p>
+          </div>
         </div>
       </div>
-      <p>          
-        <%= reply.body %>
-      </p>
-      <div class="tweet-footer-container">
-        <div class="tweet-icons">         
-            <i class="far fa-trash-alt pointer"></i>          
-          <%= link_to edit_tweet_path(reply) do %>
-            <i class="fas fa-pencil-alt pointer"></i>
-          <%end%>
-        </div>
-        <div class="tweet-footer">
-          <p>
-              <i class="far fa-comment-dots"></i>
-            <%= reply.replies_count %>
-          </p>    
-          <p>
-            <i class="far fa-heart"></i>
-            <%= reply.likes_count %>
-          </p>
-        </div>
-      </div>
-    </div>
     <%end%>
-  </div>
-  <div>
-    <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %>  
-  </div>
+  </div>  
 </sec>

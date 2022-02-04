@@ -1,29 +1,28 @@
-<h2>Sign up</h2>
+<h2 class="heading text-center mb-4">Sign in to your account</h2>
+  
+  <p class="content-xs overline mb-4 text-center">continue with</p>
+    <%=form_with url: user_github_omniauth_authorize_path, method: :post, data: { turbo: "false" } do |f|%>
+      <%= f.submit "GITHUB", class: "button button--secondary full-width mb-4"%>
+    <%end%>
+  <p class="content-xs overline mb-4 text-center">or</p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-column gap-4", data: { turbo: "false" } }) do |f| %>
+  
+  <%= input_text(f, :username, resource, placeholder: "example") %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= input_email(f, :email, resource, placeholder: "example@mail.com", autofocus: true) %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <%= input_text(f, :name, resource, placeholder: "Example Name") %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <%= input_file(f, :avatar, resource)%>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <%= input_password(f, :password, resource, placeholder: "******") %>
+
+  <%= input_password(f, :password_confirmation, resource, placeholder: "******") %>
+
+  <%= f.submit "Sign up", class: "button button--primary full-width mb-4" %>
+  <p class="content-ms text-center mb-4">Already a member?</p>
+  <div class="flex content-center">
+    <%=link_to "Sign in", user_session_path(resource)%>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
