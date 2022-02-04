@@ -1,12 +1,26 @@
 class LikeController < ApplicationController
 
+    def current_user                                                              
+        super || guest_user                                                         
+    end                                                                           
+     
+    def guest_user                                                                
+       User.find(session[:guest_user_id].nil? ? session[:guest_user_id] = create_guest_user.id : session[:guest_user_id])
+    end                                                                           
+      
+    def create_guest_user                                                         
+      token = SecureRandom.base64(15)                                             
+      user = User.new(:username => "Guest", :password => token, :email => "#{token}@mail.com")
+      user.save(:validate => false) 
+      user                                                                        
+    end
+
     # GET /tweets/new
   def new
     @tweet = Tweet.new
   end
     # GET /tweets/1/edit
   def edit
-
     if(current_user.nil?)
         like = Like.where(tweet_id: params[:id], user_id: 0).pluck(:id)
     else

@@ -1,16 +1,27 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
 
+  def current_user                                                              
+    super || guest_user                                                         
+  end                                                                           
+  
+  def guest_user                                                                
+    User.find(session[:guest_user_id].nil? ? session[:guest_user_id] = create_guest_user.id : session[:guest_user_id])
+  end                                                                           
+  
+  def create_guest_user                                                         
+    token = SecureRandom.base64(15)                                             
+    user = User.new(:username => "Guest", :password => token, :email => "#{token}@mail.com")
+    user.save(:validate => false) 
+    user                                                                        
+  end
+
   # GET /tweets
   def index    
     @tweet = Tweet.new
     @tweets = Tweet.all.order(:updated_at)  
-    if(current_user.nil?)
-      @current_user = User.new
-      @current_user.id = 0
-    else
-      @current_user = current_user  
-    end
+
+    @current_user = current_user  
   end
 
   # GET /tweets/1
