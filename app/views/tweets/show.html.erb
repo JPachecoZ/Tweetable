@@ -14,7 +14,7 @@
         <div class="flex">
           <%= image_tag reply.user.avatar, class: "tweet-img" if reply.user.avatar.attached?%>
           <div class="flex flex-column">
-            <div class="flex">
+            <div class="flex gap-1">
               <p><%= reply.user.name %></p>
               <p class = "tweet-username">@<%= reply.user.username%></p>
             </div>

@@ -3,8 +3,8 @@
     <div class="flex">
       <%= image_tag tweet.user.avatar, class: "tweet-img" if tweet.user.avatar.attached?%>
       <div class="flex flex-column">
-        <div class="flex">
-          <p><%= tweet.user.name %></p>
+        <div class="flex gap-1">
+          <p class="tweet-user-name"><%= tweet.user.name %></p>
           <p class = "tweet-username">@<%= tweet.user.username%></p>
         </div>
         <% if tweet.created_at != tweet.updated_at %>      
