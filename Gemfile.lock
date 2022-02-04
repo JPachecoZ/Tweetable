@@ -95,6 +95,10 @@ GEM
       warden (~> 1.2.3)
     digest (3.1.0)
     digest (3.1.0-java)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     faraday (1.9.3)
       faraday-em_http (~> 1.0)
@@ -155,6 +159,9 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    net-http (0.2.0)
+      net-protocol
+      uri
     net-imap (0.2.3)
       digest
       net-protocol
@@ -194,6 +201,9 @@ GEM
     omniauth-oauth2 (1.7.2)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     orm_adapter (0.5.0)
     parallel (1.21.0)
     parser (3.1.0.0)
@@ -284,6 +294,7 @@ GEM
     tzinfo-data (1.2021.5)
       tzinfo (>= 1.0.0)
     unicode-display_width (2.1.0)
+    uri (0.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -309,9 +320,12 @@ DEPENDENCIES
   bootsnap
   debug
   devise
+  dotenv-rails
   image_processing (~> 1.2)
   importmap-rails
+  net-http
   omniauth-github!
+  omniauth-rails_csrf_protection
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.1)
