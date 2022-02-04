@@ -4,9 +4,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index    
     @tweet = Tweet.new
-    @tweets = Tweet.all
-    
-    
+    @tweets = Tweet.all    
   end
 
   # GET /tweets/1
@@ -49,6 +47,15 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     redirect_to tweets_url, notice: "Tweet was successfully destroyed."
+  end
+
+  def like_tweet
+    redirect_to request.referrer, notice: "Liked Tweet"
+
+  end
+
+  def unlike_tweet
+    redirect_to request.referrer, notice: "Unliked Tweet"
   end
 
   private

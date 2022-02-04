@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :tweets
+  resources :tweets, :like
   devise_for :users, controllers: { omniauth_callbacks: :callbacks }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

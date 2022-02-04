@@ -33,8 +33,10 @@
           <%= tweet.replies_count %>
         </p>    
         <p>
-          <i class="far fa-heart"></i>
-          <%= tweet.likes_count %>
+          <%= link_to edit_like_path(tweet) do %>
+            <i class="<%= class_names(liked: (tweet.liked_users.include? 1), far: true, "fa-heart": true) %>"></i>
+          <%end%>
+          <%= tweet.liked_users.length %>
         </p>
       </div>
     </div>

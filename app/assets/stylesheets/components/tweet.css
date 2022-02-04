@@ -64,6 +64,9 @@
     color: var(--primary-300);
 }
 
+.liked {
+    color: var(--primary-300)
+}
 .tweet-text-area {    
     border: none;
 }
