@@ -2,12 +2,17 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
 
   # GET /tweets
-  def index
+  def index    
+    @tweet = Tweet.new
     @tweets = Tweet.all
+    
+    
   end
 
   # GET /tweets/1
-  def show
+  def show    
+    @new_tweet = Tweet.new    
+    @replies = @tweet.replies.all
   end
 
   # GET /tweets/new
@@ -21,7 +26,8 @@ class TweetsController < ApplicationController
 
   # POST /tweets
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweet.new(tweet_params)    
+    @tweet.user = current_user
 
     if @tweet.save
       redirect_to @tweet, notice: "Tweet was successfully created."
@@ -31,7 +37,7 @@ class TweetsController < ApplicationController
   end
 
   # PATCH/PUT /tweets/1
-  def update
+  def update    
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: "Tweet was successfully updated."
     else
