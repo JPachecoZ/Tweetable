@@ -1,9 +1,11 @@
 class Tweet < ApplicationRecord
   # Validations
 
+
   # validates :body, presence: true
   validates :body, presence: true, length: { maximum: 140 }
   # , null: false,  maxlength: 140
+
 
   # Associations
 
