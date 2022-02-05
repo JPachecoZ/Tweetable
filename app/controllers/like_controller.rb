@@ -23,7 +23,7 @@ class LikeController < ApplicationController
         if(current_user.nil?)
             new_like.user_id = 0
         else
-            new_like.user_id = current_user.id 
+            new_like.user_id = current_user.id
         end
         new_like.tweet_id = params[:id]
         p new_like

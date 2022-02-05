@@ -1,0 +1,4 @@
+<div class="show__links-container">
+  <%= link_to "Tweets (#{user.tweets_count})", user_tweets_path(user.id), class:"show__link #{"show__link--active" if active == "tweets"}" %>
+  <%= link_to "Likes (#{user.likes_count})", user_likes_path(user.id), class:"show__link #{"show__link--active" if active == "likes"}" %>
+</div>

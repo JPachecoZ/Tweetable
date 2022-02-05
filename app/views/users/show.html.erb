@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div>
+  <%= link_to "EDIT PROFILE", edit_user_path(@user) %>
+</div>
+
+<%= render partial: "tweets/tweet_links", locals: { user: @user, active: "tweets" } %>
+
+<div class="tweets">
+  <%=render @user.tweets %>
+</div>

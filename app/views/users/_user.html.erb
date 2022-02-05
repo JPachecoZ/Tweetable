@@ -1,0 +1,11 @@
+<div id="<%= dom_id user %>">
+  <div class="user-header">
+    <h1  class="user-title">Profile</h1>
+      <%= image_tag user.avatar, class: "user-img" if user.avatar.attached?%>
+      <div class="user-header__content">
+        <%= content_tag "h3", user.name %>
+        <%= content_tag "p", "@" << user.username %>
+        <%= content_tag "p", "Joined on " << user.created_at.to_date.to_formatted_s(:long) %>
+      </div>
+  </div>
+</div>

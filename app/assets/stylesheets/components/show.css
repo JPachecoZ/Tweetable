@@ -1,0 +1,18 @@
+.show__links-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.show__link {
+  display: inline-block;
+  padding: 0.5rem 0;
+  width: 8.75rem;
+  color: var(--gray-300);
+  text-align: center;
+}
+
+.show__link--active {
+  color: var(--gray-400);
+  border-bottom: 0.25rem solid var(--primary-500);
+}
