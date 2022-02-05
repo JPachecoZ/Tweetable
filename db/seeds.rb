@@ -12,6 +12,10 @@ tweet3 = admin.tweets.create(body: "Lorem ipsum dolor sit amet consectetur adipi
 
 admin.avatar.attach(io: File.open("db/images/avatar.jpg"), filename: "avatar")
 
+member = User.create(email: "member@mail.com", password: "supersecret", username: "member", name: "member", role: 0)
+member.avatar.attach(io: File.open("db/images/avatar.jpg"), filename: "avatar")
+
+
 tweet1.replies.create(body: "reply test 3", user_id: 1)
 tweet1.replies.create(body: "reply test 2", user_id: 1)
 tweet2.replies.create(body: "reply test 1", user_id: 1)
