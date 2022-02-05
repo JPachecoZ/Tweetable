@@ -56,7 +56,8 @@ class TweetsController < ApplicationController
   end
 
   # PATCH/PUT /tweets/1
-  def update    
+  def update
+    authorize(@tweet)
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: "Tweet was successfully updated."
     else

@@ -2,8 +2,7 @@
   <div class="tweet">
     <%= link_to tweet_path(tweet) do %>
     <div class="flex">
-      <%= image_tag tweet.user.avatar, class: "tweet-img" if
-      tweet.user.avatar.attached?%>
+      <%= image_tag tweet.user.avatar_attachment_path, class: "tweet-img"%>
       <div class="flex flex-column">
         <div class="flex gap-1">
           <p class="tweet-user-name"><%= tweet.user.name %></p>
@@ -20,11 +19,13 @@
     <%end%>
     <div class="tweet-footer-container">
       <div class="tweet-icons">
-        <%=link_to tweet_path(tweet), data: { turbo_method: :delete,
-        turbo_confirm: "Seguro?" } do %>
-        <i class="far fa-trash-alt pointer tweet-icon"></i>
-        <% end %> <%= link_to edit_tweet_path(tweet) do %>
-        <i class="fas fa-pencil-alt pointer tweet-icon"></i>
+        <%if current_user == tweet.user%>
+          <%=link_to tweet_path(tweet), data: { turbo_method: :delete,
+          turbo_confirm: "Seguro?" } do %>
+          <i class="far fa-trash-alt pointer tweet-icon"></i>
+          <% end %> <%= link_to edit_tweet_path(tweet) do %>
+          <i class="fas fa-pencil-alt pointer tweet-icon"></i>
+          <%end%>
         <%end%>
       </div>
       <div class="tweet-footer">

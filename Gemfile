@@ -56,6 +56,8 @@ gem "omniauth-rails_csrf_protection"
 
 gem "net-http"
 
+gem "pundit"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
