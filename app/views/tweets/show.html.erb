@@ -3,13 +3,15 @@
   <%= render @tweet %>
   <div class="gray-line"></div>
   <div class="new-tweet">
-    <%= form_with model: @new_tweet, html: {class: 'tweet-form'} do |f| %>
-      <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;' %>
-      <p class="flex-end"><%= f.submit "TWEET", class: "button button--sm" %></p>        
+    <%= form_with model: @reply, method: :post, html: {class: 'tweet-form'} do |f| %>
+      <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;outline:none' %>      
+      <%= f.hidden_field :replied_to_id%>
+      <%= hidden_field_tag 'replied_to_id', @tweet.id %>
+      <p class="flex-end"><%= f.submit "Comment", class: "button button--sm" %></p>
      <% end %> 
   </div>
   <div class="replies-container">
-    <% @replies.each do |reply| %>
+    <% @replies.order("updated_at DESC").each do |reply| %>
       <div class="tweet">
         <div class="flex">
           <%= image_tag reply.user.avatar, class: "tweet-img" if reply.user.avatar.attached?%>
