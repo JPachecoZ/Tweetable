@@ -5,12 +5,12 @@ class TweetsController < ApplicationController
   def index    
     @tweet = Tweet.new
     @tweets = Tweet.all.order( "updated_at Desc") 
-    if(current_user.nil?)
-      @current_user = User.new
-      @current_user.id = 0
-    else
-      @current_user = current_user  
-    end
+    # if(current_user.nil?)
+    #   @current_user = User.new
+    #   @current_user.id = 0
+    # else
+    #   @current_user = current_user
+    # end
 
   end
 
