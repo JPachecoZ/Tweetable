@@ -1,17 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
 <h1 class="tweets-title">Home</h1>
 <section class="tweets-section">
   
   <div id="tweets">
     <div class="new-tweet">
-      <%= form_with model: @tweet, html: {class: 'tweet-form'} do |f| %>
-        <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;' %>
-        <p class="flex-end"><%= f.submit "TWEET", class: "button button--sm" %></p>
-      <% end %>
+      <%= form_with model: @tweet do |f| %>
+        <%= f.text_area :body, placeholder: "Remember to think before write" %>
+        <p class="flex-end"><%= f.submit "TWEET", class: "button button--sm" %></p>        
+       <% end %> 
     </div>
     <% @tweets.each do |tweet| %>
-      <% unless tweet.replied_to_id %>
-        <%= render tweet %>
-      <% end %>
+      <%= render tweet %>      
     <% end %>
-  </div>  
+  </div>
+  
+  <%= link_to "New tweet", new_tweet_path %>
 </section>
