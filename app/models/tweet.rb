@@ -1,7 +1,8 @@
 class Tweet < ApplicationRecord
   # Validations
 
-  validates :body, presence: true
+  # validates :body, presence: true
+  validates :body, presence: true, length: { maximum: 140 }
   # , null: false,  maxlength: 140
 
   # Associations
@@ -14,4 +15,8 @@ class Tweet < ApplicationRecord
                     dependent: :destroy, inverse_of: "replied_to"
 
   belongs_to :replied_to, class_name: "Tweet", optional: true, counter_cache: :replies_count
+
+  def liked_users 
+    return Like.where(tweet_id: id).pluck(:user_id)
+  end
 end

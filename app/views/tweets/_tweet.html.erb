@@ -1,27 +1,38 @@
 <div id="<%= dom_id tweet %>">
   <div class="tweet">
+    <%= link_to tweet_path(tweet) do %>
     <div class="flex">
-      <%= image_tag tweet.user.avatar, class: "tweet-img" if tweet.user.avatar.attached?%>
+      <%= image_tag tweet.user.avatar, class: "tweet-img" if
+      tweet.user.avatar.attached?%>
       <div class="flex flex-column">
-        <div class="flex">
-          <p><%= tweet.user.name %></p>
-          <p class = "tweet-username">@<%= tweet.user.username%></p>
+        <div class="flex gap-1">
+          <p class="tweet-user-name"><%= tweet.user.name %></p>
+          <p class="tweet-username">@<%= tweet.user.username%></p>
         </div>
+        <% if tweet.created_at != tweet.updated_at %>
+        <p><%= time_ago_in_words(tweet.created_at)%> (Edited)</p>
+        <% else %>
         <p><%= time_ago_in_words(tweet.created_at)%></p>
+        <% end %>
       </div>
     </div>
-    <p>
-      <%= tweet.body %>
-    </p>
-    <div class="tweet-footer">
-      <p>
-        <i class="far fa-comment-dots"></i>
-        <%= tweet.replies_count %>
-      </p>
-      <p>
-        <i class="far fa-heart"></i>
-        <%= tweet.likes_count %>
-      </p>
+    <p><%= tweet.body %></p>
+    <%end%>
+    <div class="tweet-footer-container">
+      <div class="tweet-icons">
+        <%=link_to tweet_path(tweet), data: { turbo_method: :delete,
+        turbo_confirm: "Seguro?" } do %>
+        <i class="far fa-trash-alt pointer tweet-icon"></i>
+        <% end %> <%= link_to edit_tweet_path(tweet) do %>
+        <i class="fas fa-pencil-alt pointer tweet-icon"></i>
+        <%end%>
+      </div>
+      <div class="tweet-footer">
+        <p>
+          <i class="far fa-comment-dots tweet-icon"></i>
+          <%= tweet.replies_count %>
+        </p>
+      </div>
     </div>
   </div>
 </div>

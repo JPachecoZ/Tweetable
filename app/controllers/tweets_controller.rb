@@ -2,20 +2,23 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
 
   # GET /tweets
-  def index
-    puts "****************************************"
-    pp params
-    puts "***************************************"
-    p current_user
+  def index    
     @tweet = Tweet.new
-    @tweets = Tweet.all
-    
-    
+    @tweets = Tweet.all.order( "updated_at Desc") 
+    # if(current_user.nil?)
+    #   @current_user = User.new
+    #   @current_user.id = 0
+    # else
+    #   @current_user = current_user
+    # end
+
   end
 
   # GET /tweets/1
-  def show
-    
+  def show    
+    @new_tweet = Tweet.new
+    @reply = @tweet.replies.new
+    @replies = @tweet.replies.all
   end
 
   # GET /tweets/new
@@ -29,17 +32,31 @@ class TweetsController < ApplicationController
 
   # POST /tweets
   def create
-    @tweet = Tweet.new(tweet_params)
-
-    if @tweet.save
-      redirect_to @tweet, notice: "Tweet was successfully created."
+    p "*****************************************"
+    pp tweet_params    
+    p "*****************************************"
+    if tweet_params[:replied_to_id]
+      @this_tweet = Tweet.find(tweet_params[:replied_to_id])
+      @reply = @this_tweet.replies.new(tweet_params)
+      @reply.user = current_user
+      if @reply.save
+        redirect_to @this_tweet, notice: "Comment was successfully created."
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      @tweet = Tweet.new(tweet_params)
+      @tweet.user = current_user
+      if @tweet.save
+        redirect_to root_path, notice: "Tweet was successfully created."
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
   # PATCH/PUT /tweets/1
-  def update
+  def update    
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: "Tweet was successfully updated."
     else
@@ -51,6 +68,15 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     redirect_to tweets_url, notice: "Tweet was successfully destroyed."
+  end
+
+  def like_tweet
+    redirect_to request.referrer, notice: "Liked Tweet"
+
+  end
+
+  def unlike_tweet
+    redirect_to request.referrer, notice: "Unliked Tweet"
   end
 
   private
