@@ -19,14 +19,14 @@
     <%end%>
     <div class="tweet-footer-container">
       <div class="tweet-icons">
-        <%# <%if current_user == tweet.user%> %>
+        <%if current_user == tweet.user%>
           <%=link_to tweet_path(tweet), data: { turbo_method: :delete,
           turbo_confirm: "Seguro?" } do %>
           <i class="far fa-trash-alt pointer tweet-icon"></i>
           <% end %> <%= link_to edit_tweet_path(tweet) do %>
           <i class="fas fa-pencil-alt pointer tweet-icon"></i>
           <%end%>
-        <%# <%end%> %>
+        <%end%>
       </div>
       <div class="tweet-footer">
         <p>
