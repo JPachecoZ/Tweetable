@@ -15,6 +15,10 @@ class User < ApplicationRecord
 
     enum role: { member: 0, admin: 1 }
 
+    def avatar_attachment_path
+      avatar.attached? ? avatar: 'default.png'
+    end
+
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
@@ -22,7 +26,7 @@ class User < ApplicationRecord
         user.name = auth.info.nickname
         user.username = auth.info.nickname
         user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
+        user.password = ""
       end
     end
 end
