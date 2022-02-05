@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   resources :tweets do
     resources :replies
   end
+
+  namespace :api do
+    resources :users
+    resources :tweets
+  end
   # Devise Omniauth
   # get "/auth/github/callback", to: "callbacks#github"
 end
