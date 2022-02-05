@@ -8,17 +8,30 @@
 
   <%= input_text(f, :name, resource, placeholder: "Example Name") %>
 
-  <% if @user.avatar.attached?%>
-    <%= image_tag @user.avatar %>
-  <% end %>
+  <img id="preview" class="tweet-img">
 
-  <%= input_file(f, :avatar, resource)%>
+  <%= input_file(f, :avatar, resource, name:"file", id:"file", onchange:"previewImage();")%>
+
+  <script>
+    function previewImage() {
+      var file = document.getElementById("file").files;
+      if (file.length > 0) {
+        var fileReader = new FileReader();
+
+        fileReader.onload = function (event) {
+          document.getElementById("preview").setAttribute("src", event.target.result);
+        };
+
+        fileReader.readAsDataURL(file[0]);
+      }
+    }
+  </script>
 
   <%= input_password(f, :password, resource, placeholder: "******") %>
 
   <%= input_password(f, :password_confirmation, resource, placeholder: "******") %>
 
-  <%= input_password(f, :current_password, resource, autocomplete: "current_password", placeholder: "******") %>
+  <%= input_password(f, :current_password, resource, value: current_user.password, placeholder: "******") %>
 
   <%= f.submit "Update", class: "button button--primary full-width mb-4" %>
   
