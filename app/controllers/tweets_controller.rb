@@ -28,6 +28,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
+    authorize(@tweet)
   end
 
   # POST /tweets
@@ -56,7 +57,8 @@ class TweetsController < ApplicationController
   end
 
   # PATCH/PUT /tweets/1
-  def update    
+  def update
+    authorize(@tweet)
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: "Tweet was successfully updated."
     else
@@ -66,6 +68,7 @@ class TweetsController < ApplicationController
 
   # DELETE /tweets/1
   def destroy
+    authorize(@tweet)
     @tweet.destroy
     redirect_to tweets_url, notice: "Tweet was successfully destroyed."
   end
