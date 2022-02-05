@@ -2,14 +2,14 @@
 <section class="tweets-section">
   
   <div id="tweets">
-    <%unless current_user.nil?%>
+    <%# <%unless current_user.nil?%> %>
       <div class="new-tweet">
         <%= form_with model: @tweet, html: {class: 'tweet-form'} do |f| %>
           <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;outline:none' %>
           <p class="flex-end"><%= f.submit "TWEET", class: "button button--sm" %></p>
         <% end %>
       </div>
-    <%end%>
+    <%# <%end%> %>
     <% @tweets.each do |tweet| %>
       <% unless tweet.replied_to_id%>
         <%= render tweet %>

@@ -25,7 +25,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user&.admin? || record.user == user
+    user.admin? || record.user == user
   end
 
   def edit?
@@ -33,7 +33,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    user.admin? || record.user == user
   end
 
   class Scope

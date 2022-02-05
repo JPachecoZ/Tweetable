@@ -12,7 +12,6 @@ class LikesController < ApplicationController
     end
       # GET /tweets/1/edit
     def edit
-  
       if(current_user.nil?)
           like = Like.where(tweet_id: params[:id], user_id: 0).pluck(:id)
       else
