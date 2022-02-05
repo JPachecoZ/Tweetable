@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :tweets, :like
+  resources :tweets, :likes
   devise_for :users, controllers: { omniauth_callbacks: :callbacks }
+  resources :users
+  resources :users do
+    resources :tweets
+    resources :likes
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   post "/tweets/:tweet_id/replies", to: "tweets#create"
