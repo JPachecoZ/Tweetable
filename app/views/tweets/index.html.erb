@@ -1,3 +1,5 @@
+<p style="color: green"><%= notice %></p>
+
 <h1 class="tweets-title">Home</h1>
 <section class="tweets-section">
   
@@ -11,7 +13,9 @@
     <% @tweets.each do |tweet| %>
       <% unless tweet.replied_to_id%>
         <%= render tweet %>
-      <% end %>  
+      <% end %>
     <% end %>
-  </div>  
+  </div>
+  
+  <%= link_to "New tweet", new_tweet_path %>
 </section>

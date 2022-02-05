@@ -4,7 +4,14 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index    
     @tweet = Tweet.new
-    @tweets = Tweet.all.order( "created_at Desc")    
+    @tweets = Tweet.all.order( "updated_at Desc") 
+    if(current_user.nil?)
+      @current_user = User.new
+      @current_user.id = 0
+    else
+      @current_user = current_user  
+    end
+
   end
 
   # GET /tweets/1
