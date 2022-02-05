@@ -75,6 +75,14 @@
   flex-wrap: wrap;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -110,7 +118,19 @@
   padding: 0;
 }
 
+.pointer {
+  cursor: pointer;
+  line-height: 0;
+}
+
+.gray-line {
+  max-width: 100%;    
+  background-color: var(--secondary-100);
+  height: 4px;
+}
+
 /* Typography */
 .bold {
   font-weight: bold;
 }
+

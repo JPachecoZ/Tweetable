@@ -10,33 +10,10 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.label :replies_count, style: "display: block" %>
-    <%= form.number_field :replies_count %>
-  </div>
-
-  <div>
-    <%= form.label :likes_count, style: "display: block" %>
-    <%= form.number_field :likes_count %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :replied_to_id, style: "display: block" %>
-    <%= form.text_field :replied_to_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="new-tweet">
+    <div class="tweet-form-edit">      
+        <%= form.text_area :body, class: "tweet-text-area", rows: 5, style: 'width:100%;' %>     
+        <p class="flex-end"><%= form.submit value: "Update", class: "button button--sm" %></p>   
+    </div>
   </div>
 <% end %>

@@ -1,10 +1,12 @@
 <h2 class="heading text-center mb-4">Sign in to your account</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
   <p class="content-xs overline mb-4 text-center">continue with</p>
-  <%= f.button "GITHUB", class: "button button--secondary full-width mb-4"%>
+    <%=form_with url: user_github_omniauth_authorize_path, method: :post, data: { turbo: "false" } do |f|%>
+      <%= f.submit "GITHUB", class: "button button--secondary full-width mb-4"%>
+    <%end%>
   <p class="content-xs overline mb-4 text-center">or</p>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-column gap-4", data: { turbo: "false" } }) do |f| %>
   
   <%= input_text(f, :username, resource, placeholder: "example") %>
 

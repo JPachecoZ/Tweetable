@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(version: 2022_02_03_141036) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "tweets_count", default: 0
     t.integer "likes_count", default: 0
+    t.string "provider"
+    t.string "uid"
+
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
