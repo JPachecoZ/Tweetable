@@ -5,13 +5,13 @@ class TweetsController < ApplicationController
     super || guest_user                                                         
   end                                                                           
   
-  def guest_user                                                                
+  def guest_user      
     User.find(session[:guest_user_id].nil? ? session[:guest_user_id] = create_guest_user.id : session[:guest_user_id])
   end                                                                           
   
   def create_guest_user                                                         
     token = SecureRandom.base64(15)                                             
-    user = User.new(:username => "Guest", :password => token, :email => "#{token}@mail.com")
+    user = User.new(:name => "Guest", :username => "Guest_#{token}", :password => token, :email => "#{token}@mail.com")
     user.save(:validate => false) 
     user                                                                        
   end
@@ -28,6 +28,7 @@ class TweetsController < ApplicationController
     @new_tweet = Tweet.new
     @reply = @tweet.replies.new
     @replies = @tweet.replies.all
+    @current_user = current_user  
   end
 
   # GET /tweets/new
@@ -43,7 +44,7 @@ class TweetsController < ApplicationController
   # POST /tweets
   def create
     p "*****************************************"
-    pp tweet_params    
+    p tweet_params    
     p "*****************************************"
     if tweet_params[:replied_to_id]
       @this_tweet = Tweet.find(tweet_params[:replied_to_id])
