@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
   end
 
   # GET /tweets
-  def index    
+  def index
     @tweet = Tweet.new
     @tweets = Tweet.all.order("updated_at Desc") 
   end

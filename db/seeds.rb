@@ -26,9 +26,6 @@ puts "End seeding"
 
 puts "Extra seeding"
 
-user = User.create(name: "Javier Pacheco", username: "JPachecoZ", email: "jepach@gmail.com", password: "letmein")
-user.tweets.create(body:"Hola a todos! Soy nuevo aqui. Como es la nuez?")
-
 user = User.new(name: "Erina Nakiri", username: "ENakiri", email: "erina@mail.com", password: "letmein")
 user.avatar.attach(io: File.open('app/assets/images/Erina.jpg'), filename: 'Erina.jpg')
 user.save
