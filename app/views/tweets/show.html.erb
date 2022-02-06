@@ -1,7 +1,7 @@
 <h1 class="tweets-title">Tweet Detail</h1>
 <section class="section flex flex-column gap-4">
   <%= render @tweet %>
-  <%unless current_user.nil? || current_user.name == "Guest"%>
+  <%unless current_user.nil? || current_user.name == "Guest User"%>
     <div class="gray-line"></div>
     <div class="new-tweet">
       <%= form_with model: @reply, method: :post, html: {class: 'tweet-form'} do |f| %>

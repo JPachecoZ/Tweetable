@@ -10,7 +10,7 @@ class LikesController < ApplicationController
     
   def create_guest_user                                                         
     token = SecureRandom.base64(15)                                             
-    user = User.new(:username => "Guest", :password => token, :email => "#{token}@mail.com")
+    user = User.new(:name => "Guest User", :username => "Guest_#{token}", :password => token, :email => "#{token}@mail.com")
     user.save(:validate => false) 
     user                                                                        
   end
