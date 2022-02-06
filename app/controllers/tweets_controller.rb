@@ -19,14 +19,14 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index    
     @tweet = Tweet.new
-    @tweets = Tweet.all.order(:updated_at)  
-
+    @tweets = Tweet.all.order("updated_at Desc") 
     @current_user = current_user  
   end
 
   # GET /tweets/1
   def show    
-    @new_tweet = Tweet.new    
+    @new_tweet = Tweet.new
+    @reply = @tweet.replies.new
     @replies = @tweet.replies.all
   end
 
@@ -37,22 +37,37 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
+    authorize(@tweet)
   end
 
   # POST /tweets
   def create
-    @tweet = Tweet.new(tweet_params)    
-    @tweet.user = current_user
-
-    if @tweet.save
-      redirect_to @tweet, notice: "Tweet was successfully created."
+    p "*****************************************"
+    pp tweet_params    
+    p "*****************************************"
+    if tweet_params[:replied_to_id]
+      @this_tweet = Tweet.find(tweet_params[:replied_to_id])
+      @reply = @this_tweet.replies.new(tweet_params)
+      @reply.user = current_user
+      if @reply.save
+        redirect_to @this_tweet, notice: "Comment was successfully created."
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      @tweet = Tweet.new(tweet_params)
+      @tweet.user = current_user
+      if @tweet.save
+        redirect_to root_path, notice: "Tweet was successfully created."
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
   # PATCH/PUT /tweets/1
-  def update    
+  def update
+    authorize(@tweet)
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: "Tweet was successfully updated."
     else
@@ -62,6 +77,7 @@ class TweetsController < ApplicationController
 
   # DELETE /tweets/1
   def destroy
+    authorize(@tweet)
     @tweet.destroy
     redirect_to tweets_url, notice: "Tweet was successfully destroyed."
   end

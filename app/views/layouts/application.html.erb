@@ -13,7 +13,7 @@
 
   <body>
     <p class="alert"><%= alert %></p>
-    
+
     <header class="header">
       <div class="container navbar">
         <%=link_to image_tag("Logo.png"), root_path, class: "logo"%>
@@ -25,11 +25,11 @@
           </div>
           <ul class="navbar-links gap-4" role="list">
             <%if (!current_user.nil? && current_user.username != "Guest" && current_user.username != "anonymous") && user_signed_in?%>
-              <li>Welcome <%=current_user.username%></li>
-              <li><%=link_to "Profile", edit_user_registration_path%></li>
+              <li>Welcome, <%=current_user.name%></li>
+              <li><%=link_to "Profile", user_path(current_user.id)%></li>
               <li>
                   <%=button_to "Log Out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "button button--secondary"%>
-              </li>
+              </li>              
             <%else%>
               <li class="text-center">Login to start the tweeting madness!</li>
               <li><%=link_to "Log in", new_user_session_path, class: "button button--primary"%></li>
