@@ -2,6 +2,12 @@
   margin: 16px;
 }
 
+#tweets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .tweets-title {
   max-width: 100%;
   text-align: center;

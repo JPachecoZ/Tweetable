@@ -1,1 +1,51 @@
-empty
+<% @likes = @user.likes%>
+<%= render @user %>
+<div class="flex flex-center">
+  <%= link_to "EDIT PROFILE", edit_user_registration_path(@user), class: "button button--primary fit-content" %>
+</div>
+<%= render partial: "tweets/tweet_links", locals: { user: @user, active: "likes" } %>
+<p>
+  <% @likes.each do |like| %>
+    <% tweet_id =like.tweet_id %>     
+    <% user_tweet = Tweet.find(tweet_id) %>      
+    <div class="tweet">
+      <%= link_to tweet_path(user_tweet) do %>
+      <div class="flex">
+        <%= image_tag user_tweet.user.avatar_attachment_path, class: "tweet-img"%>
+        <div class="flex flex-column">
+          <div class="flex gap-1">
+            <p class="tweet-user-name"><%= user_tweet.user.name %></p>
+            <p class="tweet-username">@<%= user_tweet.user.username%></p>
+          </div>
+          <% if user_tweet.created_at != user_tweet.updated_at %>
+          <p><%= time_ago_in_words(user_tweet.created_at)%> (Edited)</p>
+          <% else %>
+          <p><%= time_ago_in_words(user_tweet.created_at)%></p>
+          <% end %>
+        </div>
+      </div>
+      <p><%= user_tweet.body %></p>
+      <%end%>
+      <div class="tweet-footer-container">
+        <div class="tweet-icons">
+          <%if current_user%>
+          <%if current_user == user_tweet.user || current_user.role == "admin" %>
+          <%=link_to tweet_path(user_tweet), data: { turbo_method: :delete,
+            turbo_confirm: "Seguro?" } do %>
+            <i class="far fa-trash-alt pointer tweet-icon"></i>
+            <% end %> <%= link_to edit_tweet_path(user_tweet) do %>
+            <i class="fas fa-pencil-alt pointer tweet-icon"></i>
+            <%end%>
+            <%end%>
+            <%end%>
+          </div>
+          <div class="tweet-footer">
+            <p>
+              <i class="far fa-comment-dots tweet-icon"></i>
+              <%= user_tweet.replies_count %>
+            </p>
+          </div>
+        </div>
+      </div>  
+  <% end %>
+</p>

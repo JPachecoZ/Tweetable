@@ -62,6 +62,10 @@
   display: flex;
 }
 
+.flex-center {
+  justify-content: center;
+}
+
 .flex-column {
   flex-direction: column;
 }

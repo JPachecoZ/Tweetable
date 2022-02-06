@@ -71,7 +71,7 @@ class TweetsController < ApplicationController
     authorize(@tweet)
     @tweet.destroy
     redirect_to tweets_url, notice: "Tweet was successfully destroyed."
-  end
+  end  
 
   def like_tweet
     redirect_to request.referrer, notice: "Liked Tweet"

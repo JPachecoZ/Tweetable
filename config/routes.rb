@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  post "/tweets/:tweet_id/replies", to: "tweets#create"
+  post "/tweets/:tweet_id/replies", to: "tweets#create"  
   # Defines the root path route ("/")
   root "tweets#index"
 
