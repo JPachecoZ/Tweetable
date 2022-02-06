@@ -11,6 +11,7 @@ class User < ApplicationRecord
   # Associations
     has_many :tweets, dependent: :destroy
     has_many :likes, dependent: :destroy
+    has_secure_token
     has_one_attached :avatar
 
     enum role: { member: 0, admin: 1 }

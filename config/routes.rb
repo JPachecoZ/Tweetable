@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :users
-    resources :tweets
+    resources :tweets, except: [:new, :edit]
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
   end
   # Devise Omniauth
   # get "/auth/github/callback", to: "callbacks#github"
