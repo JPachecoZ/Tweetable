@@ -13,19 +13,15 @@
   height: 7rem;
   border-radius: 60px;
   margin: 0 4px;
+  object-fit: scale-down;
 }
 
 .user-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px;
-
-  position: static;
-  width: 328px;
-  height: 228px;
-  left: 16px;
-  top: 48px;
-
+  margin: 0 auto;
+  text-align: center;
+  gap: 0.25rem;
   background: #ffffff;
 }

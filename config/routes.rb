@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  post "/tweets/:tweet_id/replies", to: "tweets#create"
+  post "/tweets/:tweet_id/replies", to: "tweets#create"  
   # Defines the root path route ("/")
   root "tweets#index"
 
@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :users
-    resources :tweets
+    resources :tweets, except: [:new, :edit]
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
   end
   # Devise Omniauth
   # get "/auth/github/callback", to: "callbacks#github"
