@@ -3,7 +3,6 @@ module Api
     include ActionController::HttpAuthentication::Token::ControllerMethods
     include Pundit
 
-    
     before_action :authorize_token, except: %i[index show]
     
     rescue_from Pundit::NotAuthorizedError, with: :not_authorized

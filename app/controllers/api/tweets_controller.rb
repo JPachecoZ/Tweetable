@@ -23,7 +23,7 @@ module Api
       if tweet_params[:replied_to_id]
         @this_tweet = Tweet.find(tweet_params[:replied_to_id])
         @reply = @this_tweet.replies.new(tweet_params)
-        @reply.user = User.first
+        @reply.user = current_user
         if @reply.save
           render json: @reply, status: :created
         else
@@ -31,7 +31,7 @@ module Api
         end
       else
         @tweet = Tweet.new(tweet_params)
-        @tweet.user = User.first
+        @tweet.user = current_user
         if @tweet.save
           render json: @tweet, status: :created
         else
