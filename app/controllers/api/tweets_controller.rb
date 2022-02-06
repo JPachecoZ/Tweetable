@@ -42,6 +42,7 @@ module Api
 
     # PATCH/PUT /tweets/1
     def update
+      authorize(@tweet)
       if @tweet.update(tweet_params)
         render json: @tweet, status: :ok
       else
@@ -51,6 +52,7 @@ module Api
 
     # DELETE /tweets/1
     def destroy
+      authorize(@tweet)
       @tweet.destroy
       head :no_content
     end
