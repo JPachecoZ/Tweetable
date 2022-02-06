@@ -24,7 +24,7 @@
             <%=image_tag "icons/close.svg", class: "navbar__menu-icon-close"%>
           </div>
           <ul class="navbar-links gap-4" role="list">
-            <%if user_signed_in?%>
+            <%if (!current_user.nil? && current_user.username != "Guest" && current_user.username != "anonymous") && user_signed_in?%>
               <li>Welcome <%=current_user.username%></li>
               <li><%=link_to "Profile", edit_user_registration_path%></li>
               <li>
