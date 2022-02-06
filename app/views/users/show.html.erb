@@ -2,11 +2,13 @@
 
 <%= render @user %>
 
-<div>
-  <%= link_to "EDIT PROFILE", edit_user_registration_path(@user) %>
+<div class="flex flex-center">
+  <%= link_to "EDIT PROFILE", edit_user_registration_path(@user), class: "button button--primary fit-content" %>
 </div>
 
 <%= render partial: "tweets/tweet_links", locals: { user: @user, active: "tweets" } %>
+
+
 
 <div class="tweets">
   <%=render @user.tweets %>
