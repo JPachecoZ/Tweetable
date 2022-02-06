@@ -15,6 +15,12 @@ class LikesController < ApplicationController
     user                                                                        
   end
 
+  def index
+    @tweet = Tweet.new
+    @tweets = []
+
+  end
+
   # GET /tweets/new
 def new
   @tweet = Tweet.new

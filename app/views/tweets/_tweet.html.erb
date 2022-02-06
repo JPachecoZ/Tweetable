@@ -37,7 +37,7 @@
         </p>
         <p>
            <%= link_to edit_like_path(tweet) do %>
-             <i class="<%= class_names(liked: (tweet.liked_users.include? @current_user.id), 
+             <i class="<%= class_names(liked: (tweet.liked_users.include? current_user.id), 
              far: true, "fa-heart": true, "tweet-icon": true) %>"></i>
            <%end%>
            <%= tweet.liked_users.length %>

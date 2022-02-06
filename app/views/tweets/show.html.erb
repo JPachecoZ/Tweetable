@@ -44,8 +44,11 @@
               <%= reply.replies_count %>
             </p>    
             <p>
-              <i class="far fa-heart"></i>
-              <%= reply.likes_count %>
+            <%= link_to edit_like_path(reply) do %>
+              <i class="<%= class_names(liked: (reply.liked_users.include? current_user.id), 
+              far: true, "fa-heart": true, "tweet-icon": true) %>"></i>
+            <%end%>
+            <%= reply.liked_users.length %>  
             </p>
           </div>
         </div>

@@ -1,9 +1,9 @@
-<% @likes = @user.likes%>
-<%= render @user %>
+<% @likes = current_user.likes%>
+<%= render current_user %>
 <div class="flex flex-center">
-  <%= link_to "EDIT PROFILE", edit_user_registration_path(@user), class: "button button--primary fit-content" %>
+  <%= link_to "EDIT PROFILE", edit_user_registration_path(current_user), class: "button button--primary fit-content" %>
 </div>
-<%= render partial: "tweets/tweet_links", locals: { user: @user, active: "likes" } %>
+<%= render partial: "tweets/tweet_links", locals: { user: current_user, active: "likes" } %>
 <p>
   <% @likes.each do |like| %>
     <% tweet_id =like.tweet_id %>     
@@ -44,6 +44,13 @@
               <i class="far fa-comment-dots tweet-icon"></i>
               <%= user_tweet.replies_count %>
             </p>
+            <p>
+           <%= link_to edit_like_path(user_tweet) do %>
+             <i class="<%= class_names(liked: (user_tweet.liked_users.include? current_user.id), 
+             far: true, "fa-heart": true, "tweet-icon": true) %>"></i>
+           <%end%>
+           <%= user_tweet.liked_users.length %>
+         </p>
           </div>
         </div>
       </div>  

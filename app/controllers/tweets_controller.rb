@@ -20,7 +20,6 @@ class TweetsController < ApplicationController
   def index    
     @tweet = Tweet.new
     @tweets = Tweet.all.order("updated_at Desc") 
-    @current_user = current_user  
   end
 
   # GET /tweets/1
@@ -28,7 +27,6 @@ class TweetsController < ApplicationController
     @new_tweet = Tweet.new
     @reply = @tweet.replies.new
     @replies = @tweet.replies.all
-    @current_user = current_user  
   end
 
   # GET /tweets/new
