@@ -1,15 +1,15 @@
 class ApplicationController < ActionController::Base
   include Pundit
-  before_action :authenticate_user!, except: %i[index show]
+  # before_action :authenticate_user!, except: %i[index show]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || root_path)
+    # flash[:alert] = "You are not authorized to perform this action."
+    # redirect_to(request.referrer || root_path)
   end
 
   protected

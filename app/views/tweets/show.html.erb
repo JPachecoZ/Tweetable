@@ -1,15 +1,17 @@
 <h1 class="tweets-title">Tweet Detail</h1>
 <section class="section flex flex-column gap-4">
   <%= render @tweet %>
-  <div class="gray-line"></div>
-  <div class="new-tweet">
-    <%= form_with model: @reply, method: :post, html: {class: 'tweet-form'} do |f| %>
-      <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;outline:none' %>      
-      <%= f.hidden_field :replied_to_id%>
-      <%= hidden_field_tag 'replied_to_id', @tweet.id %>
-      <p class="flex-end"><%= f.submit "Comment", class: "button button--sm" %></p>
-     <% end %> 
-  </div>
+  <%unless current_user.nil? || current_user.name == "Guest User"%>
+    <div class="gray-line"></div>
+    <div class="new-tweet">
+      <%= form_with model: @reply, method: :post, html: {class: 'tweet-form'} do |f| %>
+        <%= f.text_area :body, placeholder: "Remember to think before write", class: "tweet-text-area", rows: 5, style: 'width:100%;outline:none' %>      
+        <%= f.hidden_field :replied_to_id%>
+        <%= hidden_field_tag 'replied_to_id', @tweet.id %>
+        <p class="flex-end"><%= f.submit "Comment", class: "button button--sm" %></p>
+      <% end %> 
+    </div>
+  <%end%>
   <div class="replies-container">
     <% @replies.order("updated_at DESC").each do |reply| %>
       <div class="tweet">
@@ -42,8 +44,11 @@
               <%= reply.replies_count %>
             </p>    
             <p>
-              <i class="far fa-heart"></i>
-              <%= reply.likes_count %>
+            <%= link_to edit_like_path(reply) do %>
+              <i class="<%= class_names(liked: (reply.liked_users.include? current_user.id), 
+              far: true, "fa-heart": true, "tweet-icon": true) %>"></i>
+            <%end%>
+            <%= reply.liked_users.length %>  
             </p>
           </div>
         </div>
